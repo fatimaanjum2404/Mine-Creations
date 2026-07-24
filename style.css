@@ -1,0 +1,139 @@
+/* General body settings */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* Navbar */
+nav {
+  background: #020617;
+  padding: 15px;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 40px;
+  background: #1e293b;
+}
+
+/* Products Grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* exactly 2 items per row */
+  gap: 20px;
+  padding: 10px 0;
+  justify-items: center; /* center cards in each column */
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 600px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Product Card */
+.card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 500px; /* ensures consistent size */
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Card Images */
+.card img {
+  width: 600px;
+  height: auto;
+  object-fit: cover; /* crops excess to fit box */
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Card text */
+.card p {
+  color: #38bdf8;
+}
+
+/* Buttons */
+button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #38bdf8;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0ea5e9;
+}
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  z-index: 1000;
+}
+
+#lightbox img {
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 0 20px;
+}
+
+#lightbox span {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+#lightbox .prev, #lightbox .next {
+  font-size: 2rem;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* Category Section */
+.category {
+  margin: 30px 20px;
+}
+
+.category h2 {
+  margin-bottom: 15px;
+  color: #38bdf8;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

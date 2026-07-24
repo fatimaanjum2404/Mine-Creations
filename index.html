@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine Creations</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    /* Navbar */
+    nav {
+      background: #020617;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    nav h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 8px 16px;
+      border: 2px solid #38bdf8;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: #38bdf8;
+      color: black;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: #1e293b;
+    }
+
+    .hero h2 {
+      font-size: 1.6rem;
+      margin: 10px 0;
+    }
+
+    /* Main partition headers */
+    .main-category {
+      padding-top: 10px;
+    }
+
+    .main-category > h1 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: white;
+      background: #1e293b;
+      margin: 0;
+      padding: 30px 20px 10px 20px;
+      border-top: 3px solid #38bdf8;
+    }
+
+    .main-category > p.subtext {
+      text-align: center;
+      color: #94a3b8;
+      margin: 0 0 20px 0;
+      padding: 0 20px 20px 20px;
+      background: #1e293b;
+      font-size: 1.1rem;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Card */
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      width: 260px;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin: 12px 0 6px 0;
+    }
+
+    .card p {
+      color: #38bdf8;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 6px 0;
+    }
+
+    /* Buttons */
+    button {
+      margin-top: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.05rem;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top:0; left:0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: row;
+    }
+
+    #lightbox img {
+      width: 600px;
+      height: 600px;
+      max-width: 80vw;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 10px;
+      margin: 0 20px;
+    }
+
+    #lightbox span {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 60px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      z-index: 1001;
+    }
+
+    #lightbox .prev, #lightbox .next {
+      font-size: 2.5rem;
+      color: white;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      align-self: center;
+    }
+
+    #lightbox .prev { margin-right: 10px; }
+    #lightbox .next { margin-left: 10px; }
+
+    /* Sub-category (used inside Handbags partition) */
+    .category {
+      margin: 30px 20px;
+    }
+
+    .category h2 {
+      margin-bottom: 15px;
+      color: #38bdf8;
+      font-size: 1.6rem;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section[id] {
+      scroll-margin-top: 110px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #020617;
+      color: #94a3b8;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <h2> Mine Creations</h2>
+  <div class="nav-links">
+    <a href="#handbags">Handbags</a>
+    <a href="#bracelets">Bracelets</a>
+    <a href="#shampoo">Organic Shampoo</a>
+    <a href="#crochet">Crochet Items</a>
+    
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h2>Handmade in Pakistan</h2>
+  <h2>Elegant | Stylish | Affordable</h2>
+  <h2>Customization Available. COD all over Pakistan</h2>
+</section>
+
+<!-- ============================= -->
+<!-- PARTITION: HANDBAGS           -->
+<!-- ============================= -->
+<div class="main-category" id="handbags">
+  <h1>👜 Handbags</h1>
+  <p class="subtext">Everyday and statement bags, handmade with love</p>
+
+  <!-- CATEGORY 1 -->
+  <section class="category">
+    <h2>Handbags</h2>
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/purse3-1.jpeg','images/purse3-2.jpeg','images/purse3-3.jpeg','images/purse3-4.jpeg'])">
+        <img src="images/purse3-1.jpeg">
+        <h3>Blue Bag</h3>
+        <p>PKR 2000</p>
+        <button onclick="event.stopPropagation(); orderNow('Blue Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseE-1.jpeg','images/purseE-2.jpeg','images/purseE-3.jpeg','images/purseE-4.jpeg'])">
+        <img src="images/purseE-1.jpeg">
+        <h3>Pink Plush</h3>
+        <p>PKR 2500</p>
+        <button onclick="event.stopPropagation(); orderNow('Pink Plush')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse1-1.png','images/purse1-2.png','images/purse1-3.png','images/purse1-4.png'])">
+        <img src="images/purse1-1.png">
+        <h3>Elegant Handbag</h3>
+        <p>PKR 1800</p>
+        <button onclick="event.stopPropagation(); orderNow('Elegant Handbag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseD-1.jpeg','images/purseD-2.jpeg','images/purseD-3.jpeg','images/purseD-4.jpeg'])">
+        <img src="images/purseD-2.jpeg">
+        <h3>Tote Bag</h3>
+        <p>PKR 2500</p>
+        <button onclick="event.stopPropagation(); orderNow('Tote Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseM.png','images/purseM-1.jpeg','images/purseM-2.jpeg','images/purseM-3.jpeg'])">
+        <img src="images/purseM.png">
+        <h3>Marshmallow bag</h3>
+        <p>PKR 2500</p>
+        <button onclick="event.stopPropagation(); orderNow('Marshmallow bag')">Buy Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATEGORY 2 -->
+  <section class="category">
+    <h2>Mobile Bags</h2>
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/purse5-1.jpeg','images/purse5-2.jpeg','images/purse5-3.jpeg','images/purse5-4.jpeg'])">
+        <img src="images/purse5-1.jpeg">
+        <h3>Black Ribbon Bag</h3>
+        <p>PKR 1000</p>
+        <button onclick="event.stopPropagation(); orderNow('Black Ribbon Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseA-1.jpeg','images/purseA-2.jpeg','images/purseA-3.jpeg','images/purseA-4.jpeg'])">
+        <img src="images/purseA-3.jpeg">
+        <h3>White Bag</h3>
+        <p>PKR 1000</p>
+        <button onclick="event.stopPropagation(); orderNow('White Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse6-1.jpeg','images/purse6-2.jpeg','images/purse6-3.jpeg','images/purse6-4.jpeg'])">
+        <img src="images/purse6-3.jpeg">
+        <h3>Black Beauty</h3>
+        <p>PKR 1000</p>
+        <button onclick="event.stopPropagation(); orderNow('Black Beauty')">Buy Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATEGORY 3 -->
+  <section class="category">
+    <h2>Mini Bags</h2>
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/purse0-1.jpeg','images/purse0-2.jpeg','images/purse0-3.jpeg','images/purse0-4.jpeg'])">
+        <img src="images/purse0-1.jpeg">
+        <h3>Brown Beauty</h3>
+        <p>PKR 1500</p>
+        <button onclick="event.stopPropagation(); orderNow('Brown Beauty')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse9-1.jpeg','images/purse9-2.jpeg','images/purse9-3.jpeg','images/purse9-4.jpeg'])">
+        <img src="images/purse9-1.jpeg">
+        <h3>Green Elegance</h3>
+        <p>PKR 1700</p>
+        <button onclick="event.stopPropagation(); orderNow('Green Elegance')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse7-1.jpeg','images/purse7-2.jpeg','images/purse7-3.jpeg','images/purse7-4.jpeg'])">
+        <img src="images/purse7-1.jpeg">
+        <h3>Red Round Bag</h3>
+        <p>PKR 1200</p>
+        <button onclick="event.stopPropagation(); orderNow('Red Round Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse8-1.jpeg','images/purse8-2.jpeg','images/purse8-3.jpeg','images/purse8-4.jpeg'])">
+        <img src="images/purse8-1.jpeg">
+        <h3>Pink Baby Bag</h3>
+        <p>PKR 1300</p>
+        <button onclick="event.stopPropagation(); orderNow('Pink Baby Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseK-1.jpeg','images/purseK-2.jpeg','images/purseK-3.jpeg','images/purseK-4.jpeg'])">
+        <img src="images/purseK-1.jpeg">
+        <h3>Skin Edition</h3>
+        <p>PKR 1500</p>
+        <button onclick="event.stopPropagation(); orderNow('Skin Edition')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseL.jpeg','images/purseL-1.png','images/purseL-2.png'])">
+        <img src="images/purseL-1.png">
+        <h3>Gulabi Glam</h3>
+        <p>PKR 1250</p>
+        <button onclick="event.stopPropagation(); orderNow('Gulabi Glam')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/P-1.jpeg','images/P-2.jpeg','images/P-3.jpeg','images/P-4.jpeg'])">
+        <img src="images/P-1.jpeg">
+        <h3>Green Duo Deal</h3>
+        <p>PKR 2200</p>
+        <button onclick="event.stopPropagation(); orderNow('Green Duo Deal')">Buy Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATEGORY 4 -->
+  <section class="category">
+    <h2>Shoulder Bags</h2>
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/purseB-1.jpeg','images/purseB-2.jpeg','images/purseB-3.jpeg','images/purseB-4.jpeg'])">
+        <img src="images/purseB-3.jpeg">
+        <h3>Zig Zag Bag</h3>
+        <p>PKR 1350</p>
+        <button onclick="event.stopPropagation(); orderNow('Zig Zag Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseC-1.jpeg','images/purseC-2.jpeg','images/purseC-3.jpeg'])">
+        <img src="images/purseC-1.jpeg">
+        <h3>Pinterest Inspo</h3>
+        <p>PKR 1500</p>
+        <button onclick="event.stopPropagation(); orderNow('Pinterest Inspo')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse2-1.jpeg','images/purse2-2.jpeg','images/purse2-3.jpeg','images/purse2-4.jpeg'])">
+        <img src="images/purse2-3.jpeg">
+        <h3>Ribbon Bag</h3>
+        <p>PKR 1500</p>
+        <button onclick="event.stopPropagation(); orderNow('Ribbon Bag')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purse4-1.jpeg','images/purse4-2.jpeg','images/purse4-3.jpeg','images/purse4-4.jpeg'])">
+        <img src="images/purse4-1.jpeg">
+        <h3>Grey White Bag</h3>
+        <p>PKR 1500</p>
+        <button onclick="event.stopPropagation(); orderNow('Grey White Bag')">Buy Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATEGORY 5 -->
+  <section class="category">
+    <h2>Wallet</h2>
+    <div class="products">
+      <div class="card" onclick="openLightbox(['images/purseG-1.jpeg','images/purseG-2.jpeg','images/purseG-3.jpeg'])">
+        <img src="images/purseG-2.jpeg">
+        <h3>Pink Wallet</h3>
+        <p>PKR 300</p>
+        <button onclick="event.stopPropagation(); orderNow('Pink Wallet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseH-1.jpeg','images/purseH-2.jpeg','images/purseH-3.jpeg','images/purseH-4.jpeg'])">
+        <img src="images/purseH-1.jpeg">
+        <h3>Brown Wallet</h3>
+        <p>PKR 300</p>
+        <button onclick="event.stopPropagation(); orderNow('Brown Wallet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseF-1.jpeg','images/purseF-2.jpeg','images/purseF-3.jpeg'])">
+        <img src="images/purseF-1.jpeg">
+        <h3>Bifold Wallet</h3>
+        <p>PKR 300</p>
+        <button onclick="event.stopPropagation(); orderNow('Bifold Wallet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseI-1.jpeg','images/purseI-2.jpeg','images/purseI-3.jpeg','images/purseI-4.jpeg'])">
+        <img src="images/purseI-2.jpeg">
+        <h3>Grey Wallet</h3>
+        <p>PKR 550</p>
+        <button onclick="event.stopPropagation(); orderNow('Grey Wallet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/purseJ-1.jpeg','images/purseJ-2.jpeg','images/purseJ-3.jpeg','images/purseJ-4.jpeg'])">
+        <img src="images/purseJ-4.jpeg">
+        <h3>Blue Wallet</h3>
+        <p>PKR 300</p>
+        <button onclick="event.stopPropagation(); orderNow('Blue Wallet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/N-1.jpeg','images/N-2.jpeg','images/N-3.jpeg','images/N-4.jpeg'])">
+        <img src="images/N-4.jpeg">
+        <h3>Monochrome wallet</h3>
+        <p>PKR 500</p>
+        <button onclick="event.stopPropagation(); orderNow('Monochrome wallet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/O-1.jpeg','images/O-2.jpeg','images/O-3.jpeg','images/O-4.jpeg'])">
+        <img src="images/O-1.jpeg">
+        <h3>Green Aura</h3>
+        <p>PKR 500</p>
+        <button onclick="event.stopPropagation(); orderNow('Green Aura')">Buy Now</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================= -->
+<!-- PARTITION: BRACELETS          -->
+<!-- ============================= -->
+<div class="main-category" id="bracelets">
+  <h1>💫 Bracelets</h1>
+  <p class="subtext">Handmade Aesthetic Stylish & Affordable. Best for daily use</p>
+
+  <section class="category">
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/bracelet-1.jpeg'])">
+        <img src="images/bracelet-1.jpeg">
+        <h3>Maroon Beaded Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Maroon Beaded Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-5.jpeg'])">
+        <img src="images/b-5.jpeg">
+        <h3>Customized Maryam Named Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Customized Maryam Named Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-4.jpeg'])">
+        <img src="images/b-4.jpeg">
+        <h3>Black Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Black Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-6.jpeg'])">
+        <img src="images/b-6.jpeg">
+        <h3>BTS Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('BTS Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-7.jpeg'])">
+        <img src="images/b-7.jpeg">
+        <h3>Green & White Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Green & White Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-8.jpeg'])">
+        <img src="images/b-8.jpeg">
+        <h3>White Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('White Bracelet')">Buy Now</button>
+      </div>
+
+
+      <div class="card" onclick="openLightbox(['images/b-11.jpeg'])">
+        <img src="images/b-11.jpeg">
+        <h3>Orange & White Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Orange & White Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-12.jpeg'])">
+        <img src="images/b-12.jpeg">
+        <h3>Customized Noor Named Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Customized Noor Named Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-13.jpeg'])">
+        <img src="images/b-13.jpeg">
+        <h3>Multicolor Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Multicolor Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-14.jpeg'])">
+        <img src="images/b-14.jpeg">
+        <h3>Pink Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Pink Bracelet')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/b-15.jpeg'])">
+        <img src="images/b-15.jpeg">
+        <h3>Parrot Green Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Parrot Green Bracelet')">Buy Now</button>
+      </div>
+
+
+      <div class="card" onclick="openLightbox(['images/b-2.jpeg'])">
+        <img src="images/b-2.jpeg">
+        <h3>Lilic Bracelet</h3>
+        <p>PKR 150</p>
+        <button onclick="event.stopPropagation(); orderNow('Lilic Bracelet')">Buy Now</button>
+      </div>
+
+      
+
+    </div>
+  </section>
+</div>
+
+<!-- ============================= -->
+<!-- PARTITION: ORGANIC SHAMPOO    -->
+<!-- ============================= -->
+<div class="main-category" id="shampoo">
+  <h1>🌿 Organic Shampoo</h1>
+  <p class="subtext">Chemical free Shampoo for all Hair Problems</p>
+
+  <section class="category">
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/shampoo-1.jpeg','images/shampoo-2.jpeg'])">
+        <img src="images/shampoo-1.jpeg">
+        <h3>Noor-e-Herbal Shampoo-250ml</h3>
+        <p>PKR 1200</p>
+        <button onclick="event.stopPropagation(); orderNow('Noor-e-Herbal Shampoo')">Buy Now</button>
+      </div>
+
+      <div class="card" onclick="openLightbox(['images/shampoo-1.jpeg','images/shampoo-2.jpeg'])">
+        <img src="images/shampoo-1.jpeg">
+        <h3>Noor-e-Herbal Shampoo-500ml</h3>
+        <p>PKR 2000</p>
+        <button onclick="event.stopPropagation(); orderNow('Noor-e-Herbal Shampoo')">Buy Now</button>
+      </div>
+
+
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================= -->
+<!-- PARTITION: CROCHET ITEMS      -->
+<!-- ============================= -->
+<div class="main-category" id="crochet">
+  <h1>🧶 Crochet Items</h1>
+  <p class="subtext">Each Stitch made with love and care.</p>
+
+  <section class="category">
+    <div class="products">
+
+      <div class="card" onclick="openLightbox(['images/cg-1.jpeg','images/cg-2.jpeg','images/cg-3.jpeg','images/cg-4.jpeg'])">
+        <img src="images/cg-2.jpeg">
+        <h3>Crochet Gajray</h3>
+        <p>PKR 350</p>
+        <button onclick="event.stopPropagation(); orderNow('Crochet Gajray')">Buy Now</button>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+
+<footer>
+  &copy; 2026 Mine Creations. All rights reserved.
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <span onclick="closeLightbox()">&times;</span>
+  <button class="prev" onclick="prevImage()">&#10094;</button>
+  <img id="lightbox-img">
+  <button class="next" onclick="nextImage()">&#10095;</button>
+</div>
+
+<script>
+let currentImages = [];
+let currentIndex = 0;
+let touchstartX = 0;
+let touchendX = 0;
+
+function openLightbox(images) {
+  currentImages = images;
+  currentIndex = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightbox.style.display = 'flex';
+  lightboxImg.src = currentImages[currentIndex];
+
+  // Push a state so the back button closes the lightbox instead of the website
+  history.pushState({ lightboxOpen: true }, "");
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox.style.display === 'flex') {
+    lightbox.style.display = 'none';
+    if (window.history.state && window.history.state.lightboxOpen) {
+      window.history.back();
+    }
+  }
+}
+
+window.onpopstate = function (event) {
+  document.getElementById('lightbox').style.display = 'none';
+};
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  document.getElementById('lightbox-img').src = currentImages[currentIndex];
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  document.getElementById('lightbox-img').src = currentImages[currentIndex];
+}
+
+// Swipe support
+const lightboxEl = document.getElementById('lightbox');
+
+lightboxEl.addEventListener('touchstart', e => {
+  touchstartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+lightboxEl.addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX;
+  if (touchendX < touchstartX - 50) nextImage();
+  if (touchendX > touchstartX + 50) prevImage();
+}, {passive: true});
+
+// Arrow key navigation
+document.addEventListener('keydown', function(event) {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox.style.display === 'flex') {
+    if (event.key === 'ArrowRight') nextImage();
+    else if (event.key === 'ArrowLeft') prevImage();
+    else if (event.key === 'Escape') closeLightbox();
+  }
+});
+
+function orderNow(productName) {
+  const phoneNumber = "+923005257363";
+  const message = "Hello! I want to buy: " + productName;
+  const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+
+// Highlight active nav link while scrolling
+const sections = document.querySelectorAll('.main-category');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (window.scrollY >= sectionTop - 150) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
