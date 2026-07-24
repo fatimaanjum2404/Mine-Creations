@@ -228,6 +228,71 @@
       color: #94a3b8;
       font-size: 1rem;
     }
+
+    /* ============================= */
+    /* MOBILE: show 2 cards per row  */
+    /* ============================= */
+    @media (max-width: 640px) {
+      .products {
+        gap: 10px;
+        padding: 0 8px;
+      }
+
+      .card {
+        width: calc(50% - 5px);
+        padding: 8px;
+      }
+
+      .card img {
+        height: 140px;
+        border-radius: 8px;
+      }
+
+      .card h3 {
+        font-size: 0.95rem;
+        margin: 8px 0 4px 0;
+      }
+
+      .card p {
+        font-size: 1.1rem;
+        margin: 4px 0;
+      }
+
+      button {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+        width: 100%;
+      }
+
+      .main-category > h1 {
+        font-size: 1.7rem;
+        padding: 20px 15px 8px 15px;
+      }
+
+      .main-category > p.subtext {
+        font-size: 0.95rem;
+      }
+
+      .hero h2 {
+        font-size: 1.2rem;
+      }
+
+      #lightbox img {
+        max-width: 90vw;
+        max-height: 60vh;
+        margin: 0 5px;
+      }
+
+      #lightbox .prev, #lightbox .next {
+        font-size: 1.8rem;
+      }
+
+      #lightbox span {
+        top: 15px;
+        right: 15px;
+        font-size: 40px;
+      }
+    }
   </style>
 </head>
 <body>
